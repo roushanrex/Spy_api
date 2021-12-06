@@ -15,7 +15,6 @@ class User(models.Model):
 
 
 
-
 class Phonedata(models.Model):
     email = models.CharField(max_length=255)
     devicename = models.CharField(max_length=255)
@@ -24,12 +23,12 @@ class Phonedata(models.Model):
     latitude = models.CharField(max_length=255)
     longitude = models.CharField(max_length=255)
     time = models.CharField(max_length=255)
-    contact = models.TextField(blank=True, null=True)
-    message = models.TextField(blank=True, null=True)
-    incomming = models.TextField(blank=True, null=True)
-    outgoing = models.TextField(blank=True, null=True)
-    facebook = models.TextField(blank=True, null=True)
-    whatsapp = models.TextField(blank=True, null=True)
+    contact = models.TextField(blank=True)
+    message = models.TextField(blank=True)
+    incomming = models.TextField(blank=True)
+    outgoing = models.TextField(blank=True)
+    facebook = models.TextField(blank=True)
+    whatsapp = models.TextField(blank=True)
 
     def __str__(self):
         return self.devicename

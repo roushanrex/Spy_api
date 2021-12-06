@@ -7,7 +7,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('list_user/', views.List_user.as_view()),
     path('create_user/', views.Create_user.as_view()),
-    path('Get_All_device/', views.Get_All_device.as_view()),
+    path('get_All_device/', views.Get_All_device.as_view()),
 
     # Victime App
 
