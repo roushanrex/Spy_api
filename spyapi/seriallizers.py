@@ -6,8 +6,15 @@ class Userserializers(serializers.ModelSerializer):
         model = User
         fields = '__all__'
 
+class Forgetserializers(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('email', 'password')
+
 
 class Phonedataserializers(serializers.ModelSerializer):
     class Meta:
         model = Phonedata
         fields = '__all__'
+
+

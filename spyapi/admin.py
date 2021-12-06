@@ -5,3 +5,4 @@ from . models import User,Phonedata
 
 admin.site.register(User)
 admin.site.register(Phonedata)
+

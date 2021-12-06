@@ -13,8 +13,6 @@ class User(models.Model):
         return self.name
 
 
-
-
 class Phonedata(models.Model):
     email = models.CharField(max_length=255)
     devicename = models.CharField(max_length=255)

