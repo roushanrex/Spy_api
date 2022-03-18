@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import User,Phonedata
+from .models import User,Phonedata,Audio,Image
+#
 
 class Userserializers(serializers.ModelSerializer):
     class Meta:
@@ -18,3 +19,13 @@ class Phonedataserializers(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class Audioserializers(serializers.ModelSerializer):
+    class Meta:
+        model = Audio
+        fields = '__all__'
+
+
+class Imageserializers(serializers.ModelSerializer):
+    class Meta:
+        model = Image
+        fields = '__all__'
